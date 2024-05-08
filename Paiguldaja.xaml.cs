@@ -6,6 +6,8 @@ public partial class Paiguldaja : ContentPage
     public Paiguldaja()
 	{
 		InitializeComponent();
+
+
 	}
 
     
