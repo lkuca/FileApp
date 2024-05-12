@@ -28,8 +28,10 @@ public partial class NewPage2 : ContentPage
                 WidthRequest= 200,
                 HeightRequest= 400,
                 IsVisible = true,
+                Text = "asdasda"
             };
-            BackLabel = new Label() { WidthRequest = 200, HeightRequest = 200, IsVisible = true };
+            BackLabel = new Label() { WidthRequest = 200, HeightRequest = 200, IsVisible = true, Text = "asdasda" };
+
             
             CardFrame = new Frame()
             {
@@ -38,6 +40,7 @@ public partial class NewPage2 : ContentPage
                 IsVisible = true,
                 GestureRecognizers = { tapGestureRecognizer },
                 Content= new StackLayout { Children= { WordCountLabel,FrontLabel,BackLabel}}
+
             };
 
             return CardFrame;
@@ -53,17 +56,40 @@ public partial class NewPage2 : ContentPage
         };
         Button kustuta_kaart = new Button() { WidthRequest = 100, HeightRequest = 100, IsVisible = true };
         Button muuda_kaart = new Button() { WidthRequest = 100, HeightRequest = 100, IsVisible = true };
-
+        
         
         Content = new StackLayout
         {
             Spacing = 10,
             Children = { carusel,lisa_kaart, kustuta_kaart, muuda_kaart }
         };
-        
+
         //Content = carusel;
 
-	}
+        //        sõnafailist().Wait();
+
+        //IntermediateMethod();
+
+        lisa_kaart.Clicked += AddWord_Clicked;
+        kustuta_kaart.Clicked += RemoveWord_Clicked;
+        muuda_kaart.Clicked += ChangeWord_Clicked;
+
+
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await sõnafailist();
+    }
+
+
+    async Task IntermediateMethod()
+    {
+        await sõnafailist();
+    }
+
+
     private async Task sõnafailist()
     {
         try
